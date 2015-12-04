@@ -449,32 +449,6 @@ public class PokerTableController {
 			
 			
 		} else {
-			
-			
-			if (iCardDrawnPlayer + iCardDrawnCommon + 2 >= gme.getRule().getTotalCardsToDraw()) {
-				for (Player p : mainApp.GetSeatedPlayers()) {
-					Hand hPlayer = gme.FindPlayerGame(gme, p).getHand();
-					for (int a = hPlayer.getCards().size(); a < gme.getRule().GetPlayerNumberOfCards(); a++) {
-						hPlayer.AddCardToHand(new Card(eSuit.JOKER, eRank.JOKER, 0));
-					}
-
-					Hand hCommon = gme.FindCommonHand(gme).getHand();
-
-					if (hCommon.getCards() == null) {
-						for (int a = 0; a < gme.getRule().GetCommunityCardsCount(); a++) {
-							hCommon.AddCardToHand(new Card(eSuit.JOKER, eRank.JOKER, 0));
-						}
-					} else {
-
-						for (int a = hCommon.getCards().size(); a < gme.getRule().GetCommunityCardsCount(); a++) {
-							hCommon.AddCardToHand(new Card(eSuit.JOKER, eRank.JOKER, 0));
-						}
-					}
-					ArrayList<Hand> AllHands = Hand.ListHands(hPlayer, hCommon, gme);
-
-				}
-			}
-
 			// Re-enable the draw button
 			SetGameControls(eGameState);
 		}
